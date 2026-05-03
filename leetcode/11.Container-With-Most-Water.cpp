@@ -1,0 +1,18 @@
+// Make use to two pointers
+class Solution {
+public:
+    int maxArea(vector<int>& height) 
+    {
+        int left=0, right = height.size()-1;
+        int maxvol = INT_MIN; 
+        while (left<right){
+            int vol = (right-left)*(min(height[left], height[right])); 
+            maxvol = max(maxvol, vol); 
+
+            if (height[right] < height[left]) right--; 
+            else left++; 
+        }    
+
+        return maxvol;
+    }
+};
