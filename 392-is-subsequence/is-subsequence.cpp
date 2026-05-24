@@ -4,7 +4,7 @@ public:
     {
         int sp=0; 
         for (int i=0; i<t.size(); i++){
-            if (t[i] == s[sp]) sp++; 
+            if (sp < s.size() && t[i] == s[sp]) sp++; 
         }    
 
         if (sp == s.size()) return true; 
