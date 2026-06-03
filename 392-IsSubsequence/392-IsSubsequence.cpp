@@ -1,0 +1,14 @@
+// Last updated: 6/3/2026, 11:31:14 PM
+class Solution {
+public:
+    bool isSubsequence(string s, string t) 
+    {
+        int sp=0; 
+        for (int i=0; i<t.size(); i++){
+            if (sp < s.size() && t[i] == s[sp]) sp++; 
+        }    
+
+        if (sp == s.size()) return true; 
+        return false; 
+    }
+};
