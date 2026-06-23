@@ -1,26 +1,34 @@
-// Last updated: 6/23/2026, 10:31:09 PM
-1class Solution {
-2public:
-3    void perm(vector<int> &nums, int idx, set<vector<int>> &ans){
-4        if (nums.size() == idx){
-5            ans.insert(nums); 
-6            return; 
-7        }
-8
-9        for (int i=idx; i<nums.size(); i++){
-10            swap(nums[idx], nums[i]); 
-11            perm(nums, idx+1, ans); 
-12            swap(nums[idx], nums[i]); 
-13        }
-14    }
-15    vector<vector<int>> permuteUnique(vector<int>& nums) 
-16    {
-17        set<vector<int>> ans; 
-18        perm(nums, 0, ans); 
-19
-20        vector<vector<int>> final_ans; 
-21        for (auto i: ans) final_ans.push_back(i); 
-22
-23        return final_ans; 
-24    }
-25};
+// Last updated: 6/23/2026, 10:32:01 PM
+void _sol1(int n, vector<int>& perm, map<int, int>& m, vector<vector<int>>& result) {
+    if (n == perm.size()) {
+        result.push_back(perm);
+        return;
+    }
+
+    for (auto kv : m) {
+        if (kv.second == 0) continue;
+        m[kv.first]--;
+        perm.push_back(kv.first);
+
+        _sol1(n, perm, m, result);
+
+        perm.pop_back();
+        m[kv.first]++;
+    }
+}
+
+// O(n x n!) / O(n)
+vector<vector<int>> sol1(vector<int>& nums) {
+    vector<vector<int>> result;
+    vector<int> perm;
+    
+    map<int, int> m;
+    for (int i = 0; i < nums.size(); i++) {
+        if (m.count(nums[i]) == 0) m[nums[i]] = 0;
+        m[nums[i]]++;
+    }
+    
+    _sol1(nums.size(), perm, m, result);
+    return result;
+}
+};
