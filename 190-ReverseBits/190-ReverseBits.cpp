@@ -1,4 +1,4 @@
-// Last updated: 7/1/2026, 10:03:06 AM
+// Last updated: 7/1/2026, 10:04:02 AM
 1class Solution {
 2public:
 3    string toBinary(int n){
@@ -9,7 +9,7 @@
 8            n = n/2; 
 9        }
 10        reverse(ans.begin(), ans.end()); 
-11        for (int i=ans.size(); i<32; i++) ans = '0' + ans; 
+11        for (int i=ans.size(); i<32; i++) ans = '0' + ans; // this problem expects leading 0 as well
 12        return ans; 
 13    }
 14
